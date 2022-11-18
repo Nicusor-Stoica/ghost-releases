@@ -1,6 +1,7 @@
-## Ghost
+## Ghost - Virtual Host Emulator
 
 Before emulating a host you need to :
+
 1. Install root certificate `sudo ./ghost install root-ca`
 2. Install user certificate `./ghost install user-ca`
 
@@ -15,9 +16,11 @@ A single domain on custom ports : `./ghost start -h www.qualitystreet.co.uk -t h
 From configuration file `./ghost config custom-ports.ghostconfig.json`
 
 From config file stored in the working directory  `./ghost config` ; It will automatically scan for a config file. If more than one config file is found, ghost will shut down.
+
+If Chrome is installed on your PC you can use `./ghost chrome` and Ghost will try to find Chrome and start it with the `--ignore-certificate-errors` flag with a temporary profile.
 #### Help
 
-If you are having problems visiting {host} please follow these steps :
+If you are having problems visiting SSL hosts please follow these steps :
 
 On Chrome :
 1. Open chrome://flags/#allow-insecure-localhost
@@ -28,7 +31,7 @@ On Chrome :
 6. Go to Delete domain security policies and fill it with {virtual_host}
 7. Press Delete
 8. Restart Chrome (optional)
-9. If the issue persists, try using a new profile or incognito or start Chrome with the --ignore-certificate-errors flag
+9. If the issue persists, try using a new profile or incognito or start Chrome using `./ghost chrome`
 
 On Firefox :
 1. Open bout:config
@@ -37,8 +40,11 @@ On Firefox :
 4. Open the full History window with the keyboard shortcut Ctrl + Shift + H
 5. Find the site you want to delete the HSTS settings for - you can search for the site at the upper right if needed.
 6. Right-click the site from the list of items and click Forget About This Site.This should clear the HSTS settings (and other cache data) for that domain.
-7. Restart Firefox and visit the site. (optional)
-8. If the issue persists, try using incognito
+7. Navigate to about:preferences
+8. Search for Certificates
+9. Disable `Query OCSP responder servers to confirm the current validity of certificates` (but enable it when closing Ghost)
+10. Restart Firefox and visit the site. (optional)
+11. If the issue persists, try using incognito
 
 
 #### JSON Configuration
