@@ -1,5 +1,9 @@
 ## Ghost
 
+Before emulating a host you need to :
+1. Install root certificate `sudo ./ghost install root-ca`
+2. Install user certificate `./ghost install user-ca`
+
 #### Command line usage :
 
 Help : `./ghost --help`
