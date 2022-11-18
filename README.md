@@ -1,4 +1,4 @@
-## Ghost by Stoica Nicusor
+## Ghost
 
 #### Command line usage :
 
